@@ -1,113 +1,153 @@
 import Image from 'next/image'
+import Title from '../components/title'
+import ServiceCard from '@/components/serviceCard'
+import Faq from '@/components/faq'
+import ProfileCard from '@/components/profileCard'
+import Link from 'next/link'
+import Testimoni from '@/components/testimoni'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
+    <main className="flex flex-col min-h-screen">
+    <div className="p-4 md:px-12">
+      <Image src="/mulai.svg" alt="Mulai" width={120} height={70} />
+    </div>
+
+    <div className='flex justify-center'>
+      <div className='flex justify-between bg-[#E25E3E] w-4/5 h-[220px] md:h-[300px] rounded-3xl'>
+      <div className='p-4 md:p-8 flex flex-col justify-center'>
+      <h1 className='text-4xl md:text-6xl font-bold text-white'>Mulai</h1>
+          <p className='text-[12px] text-white'>Menawarkan berbagai macam kebutuhan<br/> 
+          marketing digital dengan<br/>
+          harga yang kompetitif
+          </p>
+        </div>
+        <Image src="/work.png" className='max-w-[150px] md:max-w-[300px]' alt="Mulai" width={300} height={600} objectFit='none' />
+      </div>
+    </div>
+
+    <Title titleText='What We Do'/>
+
+    <div className='p-4 md:px-12 flex flex-wrap justify-center gap-8'>
+    <ServiceCard
+      titleText='Content Planning'
+      bgColor='#C22600'
+      imageSrc="/Date_range.svg"
+      descriptionText='Kami Menyediakan jasa content planning untuk akun social media anda, sehingga anda tidak perlu memikirkan apa yang harus diposting'
+    />
+
+    <ServiceCard
+      titleText='Custom Website'
+      bgColor='#FF9B50'
+      imageSrc="/globe-wire.svg"
+      descriptionText='Jasa custom website dari mulai landing page, hingga website company profile, kami sanggup mengerjakannya'
+    />
+    
+    <ServiceCard
+      titleText='Photo Product'
+      bgColor='#E25E3E'
+      imageSrc="/camera.svg"
+      descriptionText='Anda akan mendapatkan total 1o photo profesionnal produk anda dengan harga yang sangat terjangkau, photo bisa lebih dari 10 tergantung keinginan anda'
+    />
+    
+    <ServiceCard
+      titleText='Short Video Ads'
+      bgColor='#C63D2F'
+      imageSrc="/forward.svg"
+      descriptionText='Kami buatkan iklan singkat untuk produk anda berdurasi 1 menit'
+    />
+
+    <ServiceCard
+      titleText='Content Editing'
+      bgColor='#C22600'
+      imageSrc="/scissors.svg"
+      descriptionText='Kami menyediakan jasa untuk mengedit konten yang sudah anda buat, baik itu video ataupun gambar'
+    />
+    </div>
+
+    <Title titleText='What They Ask'/>
+
+    <div className='p-4 md:px-12 grid md:grid-cols-2 justify-center justify-items-center gap-4'>
+      <Faq
+        question='Berapa biaya yang diperlukan?'
+        answer='Biaya yang kita tawarkan sangat fleksible berdasarkan service yang kalian perlukan, kalian bisa coba untuk diskusi langusng melalui tombol dibawah untuk mencari tau.'
+      />
+      <Faq
+        question='Bagaimana saya bisa tau sudah seberapa jauh proses orderan saya?'
+        answer='Untuk biaya sendiri bervariasi tergantung kebutuhan usaha anda'
+      />
+      <Faq
+        question='Apakah bisa merubah request saat proses pengerjaan?'
+        answer='Bisa, selama request yang diminta masih dalam batas wajar dan tidak melebihi budget yang sudah ditentukan diawal'
+      />
+      <Faq
+        question='Apakah MULAI menyediakan refund'
+        answer='Ya, kami menyediakan refund dengan syarat dan ketentuan'
+      />
+    </div>
+
+    <Title titleText='What They Say'/>
+
+    <div className='p-4 md:px-12 overflow-y-scroll flex'>
+      <Testimoni
+        imageSrc="/profile.jpeg"
+        name="Mochamad Rafli"
+        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+      />
+      <Testimoni
+        imageSrc="/profile.jpeg"
+        name="Mochamad Rafli"
+        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+      />
+      <Testimoni
+        imageSrc="/profile.jpeg"
+        name="Mochamad Rafli"
+        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+      />
+    </div>
+
+    <div className='bg-[#E25E3E] p-12'>
+      <div className='flex justify-center text-white font-bold text-4xl'>
+      <h1>Meet Our Team</h1>
+      </div>
+
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 justify-center pt-4'>
+      <ProfileCard
+        imageSrc="/profile.jpeg"
+        name="Mochamad Rafli"
+        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman di berbagai technology terkini"
+      />
+
+      <ProfileCard
+        imageSrc="/team.png"
+        name="Upridzal M.P"
+        description="Video Editor, Content Creator, Designer, Marketer yang memiliki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+      />
+      </div>
+
+      <div className='flex flex-wrap justify-between items-center p-4'>
+      <Link href="https://wa.me/6285159185563">
+      <div className='font-bold text-white md:w-1/2'>
+        <div className='py-2'>
+        <h1 className='text-2xl py-2'>
+        TERTARIK DENGAN JASA KITA?
+        </h1>
+        <p>
+        Silahkan konsul terlebih dahulu dengan kami secara gratis melalui WhatsApp
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        </div>
+        <div className='bg-green-500 py-2 px-4 text-2xl flex justify-between rounded-xl w-fit'>
+          <Image src="/wa-icon.svg"  width={30} height={30} alt="Mulai"/>
+          <p className='px-4'>085159185563</p>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      </Link>
+
+      <Image src="/white-logo.svg"  width={200} height={200} alt="Mulai"/>
+
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    </div>
     </main>
   )
 }
