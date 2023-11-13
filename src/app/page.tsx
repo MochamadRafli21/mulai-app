@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         </Link>
         </div>
-        <Image src="/work.png" className='max-w-[150px] md:max-w-[300px]' alt="Mulai" width={300} height={600} objectFit='none' />
+        <Image src="/work.png" className='hidden md:block max-w-[150px] md:max-w-[300px]' alt="Mulai" width={300} height={600} objectFit='none' />
       </div>
     </div>
 
