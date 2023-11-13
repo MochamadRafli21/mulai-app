@@ -21,6 +21,12 @@ export default function Home() {
           marketing digital dengan<br/>
           harga yang kompetitif
           </p>
+        <Link href="https://wa.me/6285159185563">
+        <div className='bg-green-500 text-white font-extrabold mt-2 py-2 px-4 text-2xl flex justify-between rounded-xl w-fit'>
+          <Image src="/wa-icon.svg"  width={30} height={30} alt="Mulai"/>
+          <p className='px-4'>085159185563</p>
+        </div>
+        </Link>
         </div>
         <Image src="/work.png" className='max-w-[150px] md:max-w-[300px]' alt="Mulai" width={300} height={600} objectFit='none' />
       </div>
@@ -74,7 +80,7 @@ export default function Home() {
       />
       <Faq
         question='Bagaimana saya bisa tau sudah seberapa jauh proses orderan saya?'
-        answer='Untuk biaya sendiri bervariasi tergantung kebutuhan usaha anda'
+        answer='Kami menyediakan beberapa metode mulai dari spreadsheet, trello, atau via whatsapp. namun kedepan nya kami akan menampilkan progress anda di dalam aplikasi'
       />
       <Faq
         question='Apakah bisa merubah request saat proses pengerjaan?'
