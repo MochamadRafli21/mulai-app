@@ -1,6 +1,6 @@
 interface FaqProps {
   question: string;
-  answer: string;
+  answer: React.ReactNode;
 }
 
 export default function Faq({ question, answer }: FaqProps) {

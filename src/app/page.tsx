@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Title from '../components/title'
+import Title from '@/components/title'
 import ServiceCard from '@/components/serviceCard'
 import Faq from '@/components/faq'
 import ProfileCard from '@/components/profileCard'
@@ -16,7 +16,7 @@ export default function Home() {
     <div className='flex justify-center'>
       <div className='flex justify-between bg-[#E25E3E] w-4/5 h-[220px] md:h-[300px] rounded-3xl'>
       <div className='p-4 md:p-8 flex flex-col justify-center'>
-      <h1 className='text-4xl md:text-6xl font-bold text-white'>Mulai</h1>
+      <h1 className='text-4xl md:text-6xl font-bold text-white'>MULAI</h1>
           <p className='text-[12px] text-white'>Menawarkan berbagai macam kebutuhan<br/> 
           marketing digital dengan<br/>
           harga yang kompetitif
@@ -81,8 +81,8 @@ export default function Home() {
         answer='Bisa, selama request yang diminta masih dalam batas wajar dan tidak melebihi budget yang sudah ditentukan diawal'
       />
       <Faq
-        question='Apakah MULAI menyediakan refund'
-        answer='Ya, kami menyediakan refund dengan syarat dan ketentuan'
+      question='Apakah MULAI menyediakan refund'
+      answer={<span>Ya, kami menyediakan refund dengan <Link className='underline text-blue-500' href='/refund'>syarat dan ketentuan</Link></span>}
       />
     </div>
 
@@ -90,19 +90,19 @@ export default function Home() {
 
     <div className='p-4 md:px-12 overflow-y-scroll flex'>
       <Testimoni
-        imageSrc="/profile.jpeg"
-        name="Mochamad Rafli"
-        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+        imageSrc="/placeholder.jpeg"
+        name="Rebello"
+        description="Dari pengalaman aku minta tolong dibikinin website da video sama Mulai sih sangat worth it ya. Karna aku yg awam tentang pembuatan website maupun video, selalu dijelasin dengan detail sampe paham. Jadi aku yg bayar jasa mereka merasa sangat terbantu banget. Selain itu juga Mulai selalu membuat video dan website yang sesuai sama keinginan aku, jadinya tuh kita yang bayar jasa mereka tinggal terima jadi dan ekspektasi sama realitanya sangat memberikan kesan yg baik"
       />
       <Testimoni
-        imageSrc="/profile.jpeg"
-        name="Mochamad Rafli"
-        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+        imageSrc="/renaldi.jpeg"
+        name="Renaldi Azhar"
+        description="Saya memang suka banget dengan layanan Mulai, mulai dari layanan website, video, dan  short ads. Mulai selalu ada aja solusi untuk kebutuhan saya."
       />
       <Testimoni
-        imageSrc="/profile.jpeg"
-        name="Mochamad Rafli"
-        description="Full stack developer dengan experience di industri lebih dari 2 tahun. dan memilki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
+        imageSrc="/bagus.jpg"
+        name="Bagus"
+        description="Konsultasi dengan mereka sangat memuaskan. Saya tidak perlu repot untuk mencari solusi untuk masalah saya, dengan biaya yang murah saya dapat membuat website tanpa repot."
       />
     </div>
 
@@ -119,7 +119,7 @@ export default function Home() {
       />
 
       <ProfileCard
-        imageSrc="/team.png"
+        imageSrc="/uprizal.jpeg"
         name="Upridzal M.P"
         description="Video Editor, Content Creator, Designer, Marketer yang memiliki pengalaman bertahun-tahun berkecimpung disemua bidang tersebut"
       />
