@@ -96,7 +96,7 @@ export default function Home() {
 
     <div className='p-4 md:px-12 overflow-y-scroll flex'>
       <Testimoni
-        imageSrc="/placeholder.jpeg"
+        imageSrc="/rebello.jpeg"
         name="Rebello"
         description="Dari pengalaman aku minta tolong dibikinin website da video sama Mulai sih sangat worth it ya. Karna aku yg awam tentang pembuatan website maupun video, selalu dijelasin dengan detail sampe paham. Jadi aku yg bayar jasa mereka merasa sangat terbantu banget. Selain itu juga Mulai selalu membuat video dan website yang sesuai sama keinginan aku, jadinya tuh kita yang bayar jasa mereka tinggal terima jadi dan ekspektasi sama realitanya sangat memberikan kesan yg baik"
       />
