@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-gradient-radial from-white/20 via-zinc-50 to-orange-200/20;
+}
