@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useLogin } from "@/libs/hooks/auth/login"
 
 
 export default function LoginForm() {
@@ -8,12 +9,15 @@ export default function LoginForm() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
+  const loginMutate = useLogin()
+
   const SubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
     const payload = {
       email,
       password
     }
+    loginMutate.mutate(payload)
     console.log(payload)
     setError("")
   }
@@ -29,7 +33,7 @@ export default function LoginForm() {
         <div className='flex flex-col gap-2'>
           <label htmlFor="emai">Email</label>
           <input
-            type="email"
+            type="text"
             name="email"
             required
             id="email"

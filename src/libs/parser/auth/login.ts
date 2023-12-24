@@ -1,5 +1,5 @@
 import { LoginSchema } from "@/libs/zod/auth"
-
-export function loginParser({ email, password }: { email: string, password: string }) {
+import { LoginParserPayload } from "@/libs/types"
+export function loginParser({ email, password }: LoginParserPayload) {
   return LoginSchema.parse({ email, password })
 }

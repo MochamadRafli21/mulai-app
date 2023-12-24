@@ -4,6 +4,7 @@ import { validatePassword, generateToken } from "@/libs/auth";
 import { getUserByEmail } from "@/libs/prisma/user"
 import { loginParser } from '@/libs/parser/auth/login';
 
+
 export async function POST(request: NextRequest) {
   const res = await request.json()
   const parsedPayload = loginParser(res)
