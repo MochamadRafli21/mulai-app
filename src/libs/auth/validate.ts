@@ -11,6 +11,9 @@ export function validateToken(token: string) {
   if (!decoded) {
     throw new Error('Unauthorized')
   }
+  if (decoded.expiresAt < Date.now()) {
+    throw new Error('Unauthorized')
+  }
 
   return decoded
 }

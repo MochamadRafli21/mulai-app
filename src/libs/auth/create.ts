@@ -5,5 +5,5 @@ export function generateToken(email: string) {
   if (!secret) {
     throw new Error('JWT_SECRET must be set')
   }
-  return jwt.sign({ email }, secret, { expiresIn: '1d' })
+  return jwt.sign({ email, expiresAt: Date.now() + 1000 * 60 * 60 * 25 }, secret, { expiresIn: '1d' })
 }
