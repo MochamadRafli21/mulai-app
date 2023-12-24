@@ -1,7 +1,9 @@
 import Image from 'next/image'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 import BackDrop from "./Backdrop"
+import { useOrder } from '@/libs/hooks'
 
 export default function OrderForm({
   isVisible,
@@ -10,6 +12,16 @@ export default function OrderForm({
   isVisible: boolean
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [description, setDescription] = useState("")
+  const orderMutation = useOrder()
+
+  const submitForm = (e: React.FormEvent) => {
+    e.preventDefault()
+    orderMutation.mutate({ customer_name: name, customer_phone: phone, description })
+    setIsVisible(false)
+  }
   return (
     <>{
       isVisible ?
@@ -31,7 +43,7 @@ export default function OrderForm({
               <h1 className='text-4xl font-semibold'>Selangkah lagi untuk memulai Perjalanan Digital Yang Lebih Baik.</h1>
             </div>
 
-            <form className='flex flex-col gap-4 mt-4'>
+            <form onSubmit={(e) => { submitForm(e) }} className='flex flex-col gap-4 mt-4'>
               <div className='flex flex-col gap-2'>
                 <label htmlFor="name">Nama</label>
                 <input
@@ -40,15 +52,17 @@ export default function OrderForm({
                   required
                   id="name"
                   placeholder="Mochamad Rafli"
+                  onChange={(e) => setName(e.target.value)}
                   className="border border-gray-400 p-2 rounded"
                 />
               </div>
               <div className='flex flex-col gap-2'>
                 <label htmlFor="phone">No. Whatsapp</label>
                 <input
-                  type="text"
+                  type="phone"
                   required
                   name="phone"
+                  onChange={(e) => setPhone(e.target.value)}
                   id="phone"
                   placeholder="0851****662"
                   className="border border-gray-400 p-2 rounded"
@@ -59,6 +73,7 @@ export default function OrderForm({
                 <textarea
                   name="description"
                   required
+                  onChange={(e) => setDescription(e.target.value)}
                   id="description"
                   placeholder="Saya membutuhkan website untuk berjualan produk digital"
                   className="border border-gray-400 p-2 rounded h-24"
