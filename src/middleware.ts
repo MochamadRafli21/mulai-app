@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const auth = localStorage.getItem('accessToken')
-  const expiresAt = localStorage.getItem('expiresAt')
+  const auth = request.cookies.get('accessToken')
+  const expiresAt = request.cookies.get('expiresAt')
 
   if (!auth || !expiresAt) {
     return NextResponse.redirect(new URL('/login', request.url))

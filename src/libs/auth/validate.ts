@@ -2,6 +2,7 @@ import argon2 from 'argon2'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
 
 export function validateToken(token: string) {
+  token = token.replace('Bearer ', '')
   const secret = process.env.JWT_SECRET as Secret
   if (!token) {
     throw new Error('Unauthorized')
@@ -18,6 +19,10 @@ export function validateToken(token: string) {
   return decoded
 }
 
-export function validatePassword(hashedPassword: string, password: string) {
-  return argon2.verify(hashedPassword, password)
+export async function validatePassword(hashedPassword: string, password: string) {
+  const verified = await argon2.verify(hashedPassword, password)
+  if (!verified) {
+    throw new Error('Unauthorized')
+  }
+  return verified
 }

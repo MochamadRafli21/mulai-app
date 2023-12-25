@@ -1,15 +1,34 @@
 "use client"
-
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useLogin } from "@/libs/hooks/auth/login"
-
+import Cookies from "js-cookie"
 
 export default function LoginForm() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-  const loginMutate = useLogin()
+  const onLoginSuccess = (res: {
+    data: {
+      data: {
+        accessToken: string,
+        expiresAt: number
+      }
+    }
+  }) => {
+    Cookies.set("accessToken", res.data.data.accessToken)
+    Cookies.set("expiresAt", res.data.data.expiresAt.toString(), { expires: new Date(res.data.data.expiresAt), sameSite: "strict" })
+    setError("")
+    router.push("/dashboard")
+  }
+
+  const onLoginError = (err: any) => {
+    setError(err.message || "Unauthorized, Please Check your email and password")
+  }
+
+  const { mutate: getToken } = useLogin(onLoginSuccess, onLoginError)
 
   const SubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
@@ -17,15 +36,14 @@ export default function LoginForm() {
       email,
       password
     }
-    loginMutate.mutate(payload)
-    console.log(payload)
-    setError("")
+    getToken(payload)
+
   }
 
   return (
     <form onSubmit={(e) => { SubmitForm(e) }}>
       {!error ||
-        <div className="border-2 border-red-500 bg-red-50">
+        <div className="border-2 border-red-500 p-2 bg-red-50">
           {error && <p className="text-red-500">{error}</p>}
         </div>
       }

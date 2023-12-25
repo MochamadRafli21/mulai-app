@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 import BackDrop from "./Backdrop"
 import { useOrder } from '@/libs/hooks'
@@ -12,6 +13,7 @@ export default function OrderForm({
   isVisible: boolean
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const router = useRouter()
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [description, setDescription] = useState("")
@@ -21,6 +23,7 @@ export default function OrderForm({
     e.preventDefault()
     orderMutation.mutate({ customer_name: name, customer_phone: phone, description })
     setIsVisible(false)
+    router.push(`https://wa.me/6285159185563?text=Halo%20saya%20${name},Saya%20ingin%20diskusi%20tentang%20deskripsi%20dibawah%3A%0A%0A${encodeURI(description)}.`)
   }
   return (
     <>{

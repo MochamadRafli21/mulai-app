@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import Cookie from 'js-cookie';
 const axiosInterceptorInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API,
 });
@@ -8,7 +8,7 @@ const axiosInterceptorInstance = axios.create({
 axiosInterceptorInstance.interceptors.request.use(
   (config) => {
 
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = Cookie.get("accessToken");
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -27,8 +27,8 @@ axiosInterceptorInstance.interceptors.response.use(
   (error) => {
 
     if (error.response.status == 401) {
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("expiresAt");
+      Cookie.remove("accessToken");
+      Cookie.remove("expiresAt");
       window.location.href = "/login";
       return Promise.reject(error);
     }
