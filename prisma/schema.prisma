@@ -1,0 +1,75 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+enum Role {
+  admin
+  staff
+  customer
+}
+
+enum Status {
+  pending
+  confirm
+  in_progress
+  on_check
+  done
+}
+
+model User {
+  id       String @id @default(cuid())
+  fullname String
+  email    String @unique
+  password String
+  role     Role
+  tasks    Task[]
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+model Order {
+  id             String   @id @default(cuid())
+  title          String?
+  description    String
+  customer_name  String
+  customer_phone String
+  customer_email String?
+  task           Task[]
+  discount       Int
+  total_price    Int
+  created_at     DateTime @default(now())
+  updated_at     DateTime @default(now())
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  status      Status
+  is_active   Boolean
+  price       Int
+  Order       Order?   @relation(fields: [orderId], references: [id])
+  orderId     String?
+  Service     Service? @relation(fields: [serviceId], references: [id])
+  serviceId   String?
+  Handler     User?   @relation(fields: [handlerId], references: [id])
+  handlerId   String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  tasks       Task[]
+}
