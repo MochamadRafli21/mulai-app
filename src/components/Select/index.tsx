@@ -26,7 +26,8 @@ export default function MliSelect({ options, defaultValue, changeHandler }:
                   'p-2 bg-orange-400 hover:bg-orange-200 cursor-pointer' :
                   'p-2 hover:bg-gray-100 cursor-pointer'}
               onClick={() => updateOptions(option)}
-              key={option.key}>{option.value}</li>
+              key={options.indexOf(option)}>
+              {option.value}</li>
           ))}
         </ul>
       </div>

@@ -199,6 +199,7 @@ export default function Dashboard() {
                           newTasks.splice(task.temp_id - 1, 1)
                           setTasks(newTasks)
                         }}
+                        hidden={tasks.length <= 1}
                         className="bg-red-600 text-white p-2 rounded w-">Hapus</button>
                     </div>
                   </div>)
@@ -227,9 +228,9 @@ export default function Dashboard() {
               <h2 className='font-semibold'>Rincian Pesanan</h2>
               {tasks.map((task) => {
                 return (
-                  <div className='w-full justify-between flex px-4'>
+                  <div key={task.temp_id} className='w-full justify-between flex px-4'>
                     <h1>{task.title}</h1>
-                    <h1>{task.price ? task.price : ""}</h1>
+                    <h1>{task.price ? "Rp. " + thousandSeparator(task.price) : ""}</h1>
                   </div>
                 )
               })}
@@ -255,7 +256,7 @@ export default function Dashboard() {
                 </div>
                 <div className='flex flex-row justify-between'>
                   <h1>Total: </h1>
-                  <h1>{thousandSeparator(tasks.reduce((a, b) => a + b.price - discount, 0))}</h1>
+                  <h1>{"Rp. " + thousandSeparator(tasks.reduce((a, b) => a + b.price - discount, 0))}</h1>
                 </div>
               </div>
             </div>
