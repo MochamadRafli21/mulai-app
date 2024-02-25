@@ -16,6 +16,7 @@ export default function ServiceCard({ imageSrc, titleText, descriptionText, isDi
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true }}
       className={
         isDisplay ?
           "w-full flex flex-col min-h-[312px] bg-gradient-to-r from-[#e44d26] to-[#f16529] max-w-[540px] backdrop-blur-xl rounded-xl text-white p-4 gap-2" :

@@ -22,10 +22,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const res = await request.json()
-  const parsedPayload = OrderSchema.parse(res)
-  const order = await createOrder(parsedPayload)
-  revalidatePath('/order')
-  return NextResponse.json({ data: order });
+  try {
+    const parsedPayload = OrderSchema.parse(res)
+    const order = await createOrder(parsedPayload)
+    revalidatePath('/order')
+    return NextResponse.json({ data: order });
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 400 });
+  }
 }
 
 

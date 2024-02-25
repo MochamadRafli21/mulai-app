@@ -39,7 +39,7 @@ export default function Home() {
       <ServiceComponent />
       <Title titleText='Yang Sering Ditanyakan' />
 
-      <div className='p-4 w-4/5 mx-auto flex flex-col justify-center justify-items-center gap-4'>
+      <div className='p-4 w-4/5 mx-auto flex flex-col justify-center justify-items-center gap-2'>
         <Faq
           question='Berapa biaya yang diperlukan?'
           answer='Biaya yang kita tawarkan sangat fleksible berdasarkan service yang kalian perlukan, kalian bisa coba untuk diskusi langusng melalui tombol dibawah untuk mencari tau.'

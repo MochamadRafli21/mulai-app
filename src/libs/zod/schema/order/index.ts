@@ -1,5 +1,7 @@
 import { z } from "zod";
+import { TaskStatus } from "@/libs/types";
 
+const TaskStatusSchema = z.nativeEnum(TaskStatus);
 export const OrderSchema = z.object({
   discount: z.number().default(0),
   total_price: z.number().default(0),
@@ -11,8 +13,8 @@ export const OrderSchema = z.object({
   task: z.array(z.object({
     title: z.string(),
     description: z.string(),
-    service: z.string(),
-    status: z.string().default('pending'),
+    serviceId: z.string(),
+    status: TaskStatusSchema,
     is_active: z.boolean().default(true),
     price: z.number(),
     handlerId: z.string().optional(),

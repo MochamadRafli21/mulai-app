@@ -1,4 +1,4 @@
-// ORDER SCHEMA
+
 //  id             String   @id @default(cuid())
 //  title          String?
 //  description    String
@@ -11,10 +11,17 @@
 //  created_at     DateTime @default(now())
 //  updated_at     DateTime @default(now())
 
+export enum TaskStatus {
+  pending = "pending",
+  in_progress = "in_progress",
+  on_check = "on_check",
+  done = "done",
+}
+
 export type createTaskPayload = {
   title: string,
   description: string,
-  status: "pending" | "in_progress" | "on_check" | "done"
+  status: "pending" | "in_progress" | "on_check" | "done",
   is_active: boolean,
   handlerId?: string,
   orderId?: string,
@@ -30,7 +37,7 @@ export type createOrderPayload = {
   customer_phone: string,
   discount: number,
   total_price: number,
-  tasks?: createTaskPayload[],
+  task?: createTaskPayload[],
 }
 
 export type parserOrderPayload = {
@@ -41,8 +48,10 @@ export type parserOrderPayload = {
   customer_phone?: string,
   discount?: number,
   total_price?: number,
-  tasks?: createTaskPayload[],
+  task?: createTaskPayload[],
 }
+
+
 
 export type OrderList = {
   id: string

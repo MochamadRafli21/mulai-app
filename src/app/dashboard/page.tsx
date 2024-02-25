@@ -1,20 +1,22 @@
 'use client'
 import Link from "next/link"
-import { useEffect } from "react"
 import { getOrders } from "@/libs/hooks"
 import { OrderList } from "@/libs/types/order"
 
 export default function Dashboard() {
   const { data: orders } = getOrders()
 
-  useEffect(() => {
-    console.log(orders)
-  }, [orders])
-
   return (
     <main className="min-h-screen">
       <div className="bg-white border-b-gray-200 mb-8 h-full w-full min-h-[50px] md:min-h-[100px] p-4">
         <h1 className="text-orange-600 font-bold text-3xl">Dashboard</h1>
+
+        <Link href="/dashboard/order/add">
+          <button
+            className="font-bold hover:bg-gradient-to-t mt-4 bg-white border border-gray-400 text-orange-600 hover:text-white hover:border-0 from-orange-600 to-orange-300 rounded px-4 py-2">
+            Tambah Order
+          </button>
+        </Link>
       </div>
       {
         orders && <div className="hidden md:block mt-2 p-4 overflow-x-auto">

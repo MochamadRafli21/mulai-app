@@ -3,7 +3,13 @@ import prisma from "@/libs/prisma/prismaClient";
 import { createOrderPayload } from "@/libs/types/order";
 
 export function getOrderList() {
-  return prisma.order.findMany()
+  return prisma.order.findMany(
+    {
+      include: {
+        task: true
+      }
+    }
+  )
 }
 
 export function getOrderDetail(id: string) {
@@ -20,9 +26,12 @@ export function createOrder(payload: createOrderPayload) {
       ...payload,
       task: {
         createMany: {
-          data: payload.tasks || []
+          data: payload.task || []
         }
       }
+    },
+    include: {
+      task: true
     }
   })
 }
