@@ -103,7 +103,7 @@ export default function Dashboard() {
                 <input
                   type="phone"
                   name="phone"
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(nonNumberFilter(e.target.value))}
                   id="phone"
                   placeholder="0851****662"
                   className="border border-gray-400 p-2 rounded"
