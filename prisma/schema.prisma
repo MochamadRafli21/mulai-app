@@ -57,6 +57,7 @@ model Order {
   total_price    Int
   created_at     DateTime @default(now())
   updated_at     DateTime @default(now())
+  is_active      Boolean @default(true)
 }
 
 model Task {
@@ -64,7 +65,7 @@ model Task {
   title       String
   description String
   status      Status
-  is_active   Boolean
+  is_active   Boolean @default(true)
   price       Int
   Order       Order?   @relation(fields: [orderId], references: [id])
   orderId     String?
@@ -83,4 +84,11 @@ model Service {
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
   tasks       Task[]
+  is_active  Boolean @default(true)
+}
+
+model View {
+  id         String   @id @default(cuid())
+  created_at DateTime @default(now())
+  count      Int
 }
