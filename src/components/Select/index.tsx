@@ -1,10 +1,11 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function MliSelect({ options, defaultValue, changeHandler }:
+export default function MliSelect({ options, defaultValue, isLoading, changeHandler }:
   {
     options: { key: string, value: string }[],
     defaultValue: string,
+    isLoading: boolean
     changeHandler: (option: string) => void
   }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,12 +15,19 @@ export default function MliSelect({ options, defaultValue, changeHandler }:
     setIsOpen(false)
     changeHandler(option.key)
   }
+
+  useEffect(() => {
+    if (!isLoading && defaultValue && options.length) setSelectedOption(defaultValue ? defaultValue : options[0].value)
+  }, [isLoading])
   return (
     <div className='relative w-full'>
-      <div className='border bg-white border-gray-400 p-2 rounded w-full items-start' onClick={() => setIsOpen(!isOpen)}>{selectedOption}</div>
+      <div className='border bg-white border-gray-400 p-2 rounded w-full items-start cursor-pointer h-[43px] truncate' onClick={
+        () => setIsOpen(!isOpen)}>{
+          selectedOption
+        }</div>
       <div className='mt-2 absolute bg-white w-full shadow max-h-[200px] overflow-y-scroll' hidden={!isOpen}>
         <ul>
-          {options.map((option) => (
+          {isLoading ? <li>Menunggu Data ...</li> : options.map((option) => (
             <li
               className={
                 option.value === selectedOption ?

@@ -3,12 +3,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 
-import { useOrder } from '@/libs/hooks'
+import { useOrder, getServices } from '@/libs/hooks'
 import MliSelect from '@/components/Select'
-import { TaskStatus } from '@/libs/types'
+import { TaskStatus, ServiceList } from '@/libs/types'
 import { thousandSeparator, nonNumberFilter } from '@/libs/utils'
 
 export default function Dashboard() {
+  const { data: services, isSuccess } = getServices()
   const router = useRouter()
   const [name, setName] = useState("")
   const [title, setTitle] = useState("")
@@ -25,21 +26,6 @@ export default function Dashboard() {
   }])
   const [description, setDescription] = useState("")
   const orderMutation = useOrder()
-
-  const dummyService = [
-    {
-      id: "1",
-      name: "Service 1"
-    },
-    {
-      id: "2",
-      name: "Service 2"
-    },
-    {
-      id: "3",
-      name: "Service 3"
-    }
-  ]
 
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault()
@@ -131,18 +117,6 @@ export default function Dashboard() {
                         className="border border-gray-400 p-2 rounded"
                       />
                     </div>
-                    <div className='flex mt-2 flex-col gap-2'>
-                      <label htmlFor="name">Assign To:</label>
-                      <MliSelect
-                        defaultValue={dummyService[0].name}
-                        options={dummyService.map((service) => { return { key: service.id.toString(), value: service.name } })}
-                        changeHandler={(selectedId) => {
-                          const newTasks = [...tasks]
-                          newTasks[task.temp_id - 1].serviceId = selectedId
-                          setTasks(newTasks)
-                        }}
-                      />
-                    </div>
                     <div className='grid grid-cols-2 gap-2 mt-3'>
                       <div className='flex flex-col gap-2'>
                         <label htmlFor="name">Harga Jasa</label>
@@ -163,18 +137,27 @@ export default function Dashboard() {
                           className="border border-gray-400 p-2 rounded"
                         />
                       </div>
-                      <div className='flex flex-col gap-2'>
-                        <label htmlFor="name">Tipe Jasa</label>
-                        <MliSelect
-                          defaultValue={dummyService[0].name}
-                          options={dummyService.map((service) => { return { key: service.id.toString(), value: service.name } })}
-                          changeHandler={(selectedId) => {
-                            const newTasks = [...tasks]
-                            newTasks[task.temp_id - 1].serviceId = selectedId
-                            setTasks(newTasks)
-                          }}
-                        />
-                      </div>
+                      {!isSuccess ? <></> :
+                        <div className='flex flex-col gap-2'>
+                          <label htmlFor="name">Tipe Jasa</label>
+                          <MliSelect
+                            isLoading={!isSuccess}
+                            defaultValue={services.data.data[0].name || ''}
+                            options={
+                              services ? services.data.data.map(
+                                (service: ServiceList) => {
+                                  return { key: service.id.toString(), value: service.name }
+                                }) : [] as ServiceList[]
+                            }
+                            changeHandler={(selectedId) => {
+                              const newTasks = [...tasks]
+                              newTasks[task.temp_id - 1].serviceId = selectedId
+                              setTasks(newTasks)
+                            }}
+                          />
+                        </div>
+
+                      }
                     </div>
 
                     <div className='flex flex-col gap-2 mt-2'>
